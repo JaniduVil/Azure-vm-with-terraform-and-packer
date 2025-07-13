@@ -15,9 +15,10 @@ This project automates the creation of an Azure Linux VM using a custom image bu
 ```bash
 az login
 az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/<your-subscription-id>"
+```
 
-## Build Custom Image with Packer 
-
+### 2. Build Custom Image with Packer 
+```
 cd packer
 packer init ubuntu.pkr.hcl
 packer build \
@@ -26,11 +27,11 @@ packer build \
   -var "tenant_id=..." \
   -var "subscription_id=..." \
   ubuntu.pkr.hcl
+```
 
-
-## Provision VM with Terraform
-
+### 3. Provision VM with Terraform
+```
 cd ../terraform
 terraform init
 terraform apply -var="custom_image_id=<output-image-id>"
-
+```
